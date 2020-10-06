@@ -18,7 +18,9 @@ namespace GroovyColors
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        int red;
+        int blue;
+        int green;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -34,7 +36,9 @@ namespace GroovyColors
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            red = 255;
+            blue = 255;
+            green = 255;
             base.Initialize();
         }
 
@@ -71,7 +75,32 @@ namespace GroovyColors
                 this.Exit();
 
             // TODO: Add your update logic here
-
+            Random random = new Random();
+            int actualRandom = random.Next(3);
+            int upOrDown = random.Next(2);
+            if (actualRandom == 0) {
+                if (upOrDown == 0)
+                {
+                    red += 3;
+                }
+                else {
+                    red -= 3;
+                }
+            } else if (actualRandom == 1) {
+                if (upOrDown == 0)
+                {
+                    green += 3;
+                }
+                else {
+                    green -= 3;
+                }
+            } else if (actualRandom == 2) {
+                if (upOrDown == 0) {
+                    green += 3;
+                } else {
+                    green -= 3;
+                }
+            }
             base.Update(gameTime);
         }
 
@@ -81,10 +110,10 @@ namespace GroovyColors
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            Color color = new Color(red, green, blue);
+            GraphicsDevice.Clear(color);
 
             // TODO: Add your drawing code here
-
             base.Draw(gameTime);
         }
     }
